@@ -1,8 +1,9 @@
+import { Container, Section } from "@radix-ui/themes";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default async function LoginPage() {
     const supabase = createServerComponentClient({ cookies });
@@ -15,13 +16,14 @@ export default async function LoginPage() {
     }
 
     return (
-        <div>
-            <form action="/auth/login" method="POST">
-                <input type="text" placeholder="email" name="email" />
-                <input type="password" placeholder="password" name="password" />
-                <button type="submit">Login</button>
-                <button formAction="/auth/sign-up">Sign Up</button>
-            </form>
-        </div>
+        <Section className="min-h-screen grid place-content-center">
+            <Container className="border rounded p-4">
+                <form action="/auth/login" method="POST">
+                    <input type="text" name="email" />
+                    <input type="password" name="password" />
+                    <button type="submit">Login</button>
+                </form>
+            </Container>
+        </Section>
     );
 }
