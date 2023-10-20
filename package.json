@@ -2,6 +2,9 @@
   "name": "mind-bridge-app",
   "version": "0.1.0",
   "private": true,
+  "trustedDependencies": [
+    "supabase"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,9 +12,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.8.1",
+    "@supabase/supabase-js": "^2.38.2",
+    "next": "13.5.5",
     "react": "^18",
     "react-dom": "^18",
-    "next": "13.5.5"
+    "supabase": "^1.106.1"
   },
   "devDependencies": {
     "typescript": "^5",
