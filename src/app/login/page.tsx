@@ -82,6 +82,8 @@ export default function LoginPage() {
                         "El correo electrónico o la contraseña son incorrectos",
                 });
             } else {
+                // @ts-ignore
+                captcha.current?.resetCaptcha();
                 router.push("/");
             }
         })();
@@ -176,16 +178,20 @@ export default function LoginPage() {
                                         </FormItem>
                                     )}
                                 />
-                                <HCaptcha
-                                    ref={captcha as any}
-                                    sitekey={
-                                        process.env
-                                            .NEXT_PUBLIC_HCAPTCHA_SITE_KEY!
-                                    }
-                                    onVerify={(token) =>
-                                        setCaptchaToken(token as any)
-                                    }
-                                />
+
+                                <FormItem className="flex justify-center">
+                                    <HCaptcha
+                                        ref={captcha as any}
+                                        sitekey={
+                                            process.env
+                                                .NEXT_PUBLIC_HCAPTCHA_SITE_KEY!
+                                        }
+                                        onVerify={(token) =>
+                                            setCaptchaToken(token as any)
+                                        }
+                                    />
+                                </FormItem>
+
                                 <Box className="flex flex-col gap-4">
                                     <Button
                                         disabled={isLoading}
