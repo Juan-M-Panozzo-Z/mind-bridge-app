@@ -8,9 +8,12 @@ import { useForm } from "react-hook-form";
 // Supabase
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
+// HCaptcha
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+
 // Nextjs & React
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Radix UI
 import { Box, Container, Section } from "@radix-ui/themes";
@@ -46,6 +49,9 @@ const FormSchema = z.object({
 });
 
 export default function LoginPage() {
+    const [captchaToken, setCaptchaToken] = useState();
+    const captcha = useRef();
+
     const [showPassword, setShowPassword] = useState(false);
 
     const router = useRouter();
@@ -64,6 +70,7 @@ export default function LoginPage() {
             const { error } = await supabase.auth.signInWithPassword({
                 email: values.email,
                 password: values.password,
+                options: { captchaToken },
             });
             if (error) {
                 form.setError("email", {
@@ -168,6 +175,16 @@ export default function LoginPage() {
                                             <FormMessage />
                                         </FormItem>
                                     )}
+                                />
+                                <HCaptcha
+                                    ref={captcha as any}
+                                    sitekey={
+                                        process.env
+                                            .NEXT_PUBLIC_HCAPTCHA_SITE_KEY!
+                                    }
+                                    onVerify={(token) =>
+                                        setCaptchaToken(token as any)
+                                    }
                                 />
                                 <Box className="flex flex-col gap-4">
                                     <Button
