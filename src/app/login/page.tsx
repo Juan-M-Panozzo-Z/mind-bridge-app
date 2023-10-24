@@ -98,7 +98,7 @@ export default function LoginPage() {
     const isLoading = form.formState.isSubmitting;
 
     return (
-        <Section className="min-h-screen flex items-center justify-center">
+        <Section className="min-h-screen flex items-center justify-cente">
             <Container size="1" className="p-4">
                 <Card>
                     <CardHeader>

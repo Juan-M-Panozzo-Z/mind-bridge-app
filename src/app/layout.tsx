@@ -19,7 +19,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
-                <Theme>{children}</Theme>
+                <Theme className="bg-gradient-to-tr from-indigo-400/20 to-cyan-400/20">
+                    {children}
+                </Theme>
             </body>
         </html>
     );
