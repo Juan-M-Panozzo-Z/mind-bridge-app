@@ -27,6 +27,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
 
 // Types
 const FormSchema = z.object({
@@ -91,75 +98,99 @@ export default function LoginPage() {
     const isLoading = form.formState.isSubmitting;
 
     return (
-        <Section className="min-h-screen grid place-content-center">
-            <Container size="2" className="p-4">
-            <Form {...form}>
-                <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-8"
-                >
-                    <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Correo Electrónico</FormLabel>
-                                <FormControl>
-                                    <Input
-                                        placeholder="correo@ejemplo.com"
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Contraseña</FormLabel>
-                                <FormControl>
-                                    <Box className="relative">
-                                        <Input
-                                            type={
-                                                showPassword
-                                                    ? "text"
-                                                    : "password"
-                                            }
-                                            {...field}
-                                        />
-                                        <Button
-                                            type="button"
-                                            variant="ghost"
-                                            className="absolute top-0 right-0"
-                                            onClick={toggleShowPassword}
-                                        >
-                                            {showPassword ? (
-                                                <EyeOpenIcon />
-                                            ) : (
-                                                <EyeClosedIcon />
-                                            )}
-                                        </Button>
-                                    </Box>
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <Button
-                        disabled={isLoading}
-                        variant={"default"}
-                        type="submit"
-                    >
-                        {isLoading && (
-                            <UpdateIcon className="animate-spin w-4 h-4 mr-2" />
-                        )}
-                        Iniciar sesión
-                    </Button>
-                </form>
-            </Form>
+        <Section className="min-h-screen flex items-center justify-center">
+            <Container size="1" className="p-4">
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-xl">
+                            Bienvenido/a a MindBridge
+                        </CardTitle>
+                        <CardDescription>
+                            Inicia sesión para continuar con tu cuenta
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Form {...form}>
+                            <form
+                                onSubmit={form.handleSubmit(onSubmit)}
+                                className="space-y-8"
+                            >
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>
+                                                Correo Electrónico
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    placeholder="correo@ejemplo.com"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="password"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Contraseña</FormLabel>
+                                            <FormControl>
+                                                <Box className="relative">
+                                                    <Input
+                                                        type={
+                                                            showPassword
+                                                                ? "text"
+                                                                : "password"
+                                                        }
+                                                        {...field}
+                                                    />
+                                                    <Button
+                                                        type="button"
+                                                        variant="ghost"
+                                                        className="absolute top-0 right-0"
+                                                        onClick={
+                                                            toggleShowPassword
+                                                        }
+                                                    >
+                                                        {showPassword ? (
+                                                            <EyeOpenIcon />
+                                                        ) : (
+                                                            <EyeClosedIcon />
+                                                        )}
+                                                    </Button>
+                                                </Box>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <Box className="flex flex-col gap-4">
+                                    <Button
+                                        disabled={isLoading}
+                                        variant={"default"}
+                                        type="submit"
+                                    >
+                                        {isLoading && (
+                                            <UpdateIcon className="animate-spin w-4 h-4 mr-2" />
+                                        )}
+                                        Iniciar sesión
+                                    </Button>
+                                    <Button
+                                        variant="ghost"
+                                        onClick={() => router.push("/register")}
+                                    >
+                                        ¿No tienes una cuenta? Regístrate
+                                    </Button>
+                                </Box>
+                            </form>
+                        </Form>
+                    </CardContent>
+                </Card>
             </Container>
         </Section>
     );
