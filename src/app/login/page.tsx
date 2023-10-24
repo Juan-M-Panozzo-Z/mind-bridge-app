@@ -13,11 +13,13 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 // Radix UI
-import { Section } from "@radix-ui/themes";
+import { Box, Section } from "@radix-ui/themes";
+import { EyeClosedIcon, EyeOpenIcon, UpdateIcon } from "@radix-ui/react-icons";
+
+// Shadcn UI
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -25,8 +27,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
-// Shadcn UI
 
 // Types
 const FormSchema = z.object({
@@ -53,7 +53,24 @@ export default function LoginPage() {
     });
 
     const onSubmit = (values: z.infer<typeof FormSchema>) => {
-        console.log(values);
+        (async () => {
+            const { error } = await supabase.auth.signInWithPassword({
+                email: values.email,
+                password: values.password,
+            });
+            if (error) {
+                form.setError("email", {
+                    message:
+                        "El correo electrónico o la contraseña son incorrectos",
+                });
+                form.setError("password", {
+                    message:
+                        "El correo electrónico o la contraseña son incorrectos",
+                });
+            } else {
+                router.push("/");
+            }
+        })();
     };
 
     useEffect(() => {
@@ -67,12 +84,18 @@ export default function LoginPage() {
         })();
     }, [supabase, router]);
 
+    const toggleShowPassword = () => {
+        setShowPassword((prev) => !prev);
+    };
+
+    const isLoading = form.formState.isSubmitting;
+
     return (
         <Section className="min-h-screen grid place-content-center">
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-8"
+                    className="space-y-8 min-w-[24rem]"
                 >
                     <FormField
                         control={form.control}
@@ -97,18 +120,41 @@ export default function LoginPage() {
                             <FormItem>
                                 <FormLabel>Contraseña</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        type={
-                                            showPassword ? "text" : "password"
-                                        }
-                                        {...field}
-                                    />
+                                    <Box className="relative">
+                                        <Input
+                                            type={
+                                                showPassword
+                                                    ? "text"
+                                                    : "password"
+                                            }
+                                            {...field}
+                                        />
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            className="absolute top-0 right-0"
+                                            onClick={toggleShowPassword}
+                                        >
+                                            {showPassword ? (
+                                                <EyeOpenIcon />
+                                            ) : (
+                                                <EyeClosedIcon />
+                                            )}
+                                        </Button>
+                                    </Box>
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                    <Button variant={"default"} type="submit">
+                    <Button
+                        disabled={isLoading}
+                        variant={"default"}
+                        type="submit"
+                    >
+                        {isLoading && (
+                            <UpdateIcon className="animate-spin w-4 h-4 mr-2" />
+                        )}
                         Iniciar sesión
                     </Button>
                 </form>
