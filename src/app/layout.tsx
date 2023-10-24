@@ -21,8 +21,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={inter.className}>
                 <Theme className="bg-gradient-to-tr from-indigo-400/20 to-cyan-400/20 min-h-screen">
-                    <Navbar />
-                    <main className="w-4/5 mx-auto">{children}</main>
+                    {children}
                 </Theme>
             </body>
         </html>

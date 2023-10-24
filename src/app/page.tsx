@@ -17,6 +17,7 @@ export default async function Home() {
     }
     return (
         <main>
+            <Navbar />
             <Box>
                 <Text size={"5"}>Hola, {session.user.email}</Text>
             </Box>
