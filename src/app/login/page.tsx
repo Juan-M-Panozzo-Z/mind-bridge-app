@@ -181,6 +181,7 @@ export default function LoginPage() {
                                         Iniciar sesión
                                     </Button>
                                     <Button
+                                        disabled
                                         variant="ghost"
                                         onClick={() => router.push("/register")}
                                     >
