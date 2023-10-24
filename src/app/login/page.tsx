@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 // Radix UI
-import { Box, Section } from "@radix-ui/themes";
+import { Box, Container, Section } from "@radix-ui/themes";
 import { EyeClosedIcon, EyeOpenIcon, UpdateIcon } from "@radix-ui/react-icons";
 
 // Shadcn UI
@@ -92,10 +92,11 @@ export default function LoginPage() {
 
     return (
         <Section className="min-h-screen grid place-content-center">
+            <Container size="2" className="p-4">
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-8 min-w-[24rem]"
+                    className="space-y-8"
                 >
                     <FormField
                         control={form.control}
@@ -159,6 +160,7 @@ export default function LoginPage() {
                     </Button>
                 </form>
             </Form>
+            </Container>
         </Section>
     );
 }
