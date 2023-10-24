@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import { Box, Text } from "@radix-ui/themes";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -16,8 +17,9 @@ export default async function Home() {
     }
     return (
         <main>
-            <Navbar />
-            index
+            <Box>
+                <Text size={"5"}>Hola, {session.user.email}</Text>
+            </Box>
         </main>
     );
 }
