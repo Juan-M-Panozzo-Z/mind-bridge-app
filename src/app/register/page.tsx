@@ -31,6 +31,7 @@ import {
     Card,
     CardContent,
     CardDescription,
+    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
@@ -46,6 +47,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import Link from "next/link";
 
 // Types
 const formSchema = z.object({
@@ -317,6 +319,32 @@ export default function RegisterPage() {
                             </form>
                         </Form>
                     </CardContent>
+                    <CardFooter className="text-center flex justify-center">
+                        <CardDescription>
+                            Este sitio está protegido por{" "}
+                            <Link href="https://www.hCaptcha.com">
+                                hCaptcha
+                            </Link>
+                            <br />
+                            <Link
+                                href="https://hcaptcha.com/privacy"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline"
+                                >
+                                Política de Privacidad
+                            </Link>
+                            {" | "}
+                            <Link
+                                href="https://hcaptcha.com/terms"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline"
+                                >
+                                Términos de Servicio{" "}
+                            </Link>
+                        </CardDescription>
+                    </CardFooter>
                 </Card>
             </Container>
             <AlertDialog open={showAlert}>
