@@ -99,7 +99,6 @@ export default function LoginPage() {
             }
         })();
 
-        getWindowsSize();
     }, [supabase, router]);
 
     const toggleShowPassword = () => {
