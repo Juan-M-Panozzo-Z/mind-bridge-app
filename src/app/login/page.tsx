@@ -98,7 +98,6 @@ export default function LoginPage() {
                 router.push("/");
             }
         })();
-
     }, [supabase, router]);
 
     const toggleShowPassword = () => {
@@ -180,20 +179,20 @@ export default function LoginPage() {
                                     )}
                                 />
 
-                                <FormItem className="scale-90">
-                                    <HCaptcha
-                                        languageOverride="es"
-                                        ref={captcha as any}
-                                        sitekey={
-                                            process.env
-                                                .NEXT_PUBLIC_HCAPTCHA_SITE_KEY!
-                                        }
-                                        onVerify={(token) => {
-                                            console.log(token);
-                                            setCaptchaToken(token as any);
-                                        }}
-                                    />
-                                </FormItem>
+                                <Box className="scale-75 md:scale-100 flex justify-center">
+                                <HCaptcha
+                                    languageOverride="es"
+                                    ref={captcha as any}
+                                    sitekey={
+                                        process.env
+                                            .NEXT_PUBLIC_HCAPTCHA_SITE_KEY!
+                                    }
+                                    onVerify={(token) => {
+                                        console.log(token);
+                                        setCaptchaToken(token as any);
+                                    }}
+                                />
+                                </Box>
 
                                 <Box className="flex flex-col gap-4">
                                     <Button
