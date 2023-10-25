@@ -13,11 +13,3 @@ export default function Navbar() {
         </div>
     );
 }
-
-{
-    /* <form action="auth/logout" method="POST">
-                    <button className="bg-slate-400 p-2 rounded-lg text-white">
-                        Logout
-                    </button>
-                </form> */
-}
