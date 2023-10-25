@@ -10,11 +10,11 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 // Nextjs & React
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Radix UI
 import { Box, Container, Section } from "@radix-ui/themes";
-import { EyeClosedIcon, EyeOpenIcon, UpdateIcon } from "@radix-ui/react-icons";
+import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 
 // Shadcn UI
 import {
@@ -34,6 +34,18 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
+
+// HCaptcha
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 // Types
 const formSchema = z.object({
@@ -64,7 +76,11 @@ const formSchema = z.object({
 });
 
 export default function RegisterPage() {
+    const [captchaToken, setCaptchaToken] = useState();
+    const [size, setSize] = useState<"normal" | "compact">("compact");
+    const captcha = useRef();
     const [showPassword, setShowPassword] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
 
     const router = useRouter();
     const supabase = createClientComponentClient();
@@ -81,12 +97,44 @@ export default function RegisterPage() {
         },
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values);
+    useEffect(() => {
+        getWindowsSize();
+    }, []);
+
+    const onSubmit = async (values: z.infer<typeof formSchema>) => {
+        const {
+            data: { user },
+        } = await supabase.auth.signUp({
+            email: values.email,
+            password: values.password,
+            options: {
+                captchaToken,
+                data: {
+                    name: values.name,
+                    lastName: values.lastName,
+                    phone: values.phone,
+                    country: values.country,
+                },
+            },
+        });
+        if (user) {
+            // @ts-ignore
+            captcha.current?.resetCaptcha();
+            setShowAlert(true);
+            form.reset();
+        }
     };
 
     const toggleShowPassword = () => {
         setShowPassword((prev) => !prev);
+    };
+
+    const getWindowsSize = () => {
+        if (window.innerWidth <= 768) {
+            setSize("compact");
+        } else {
+            setSize("normal");
+        }
     };
 
     return (
@@ -242,6 +290,20 @@ export default function RegisterPage() {
                                         </FormItem>
                                     )}
                                 />
+                                <FormItem className="flex justify-center">
+                                    <HCaptcha
+                                        size={size}
+                                        languageOverride="es"
+                                        ref={captcha as any}
+                                        sitekey={
+                                            process.env
+                                                .NEXT_PUBLIC_HCAPTCHA_SITE_KEY!
+                                        }
+                                        onVerify={(token) =>
+                                            setCaptchaToken(token as any)
+                                        }
+                                    />
+                                </FormItem>
                                 <Box className="flex flex-col gap-4">
                                     <Button type="submit">Registrarse</Button>
                                     <Button
@@ -257,6 +319,25 @@ export default function RegisterPage() {
                     </CardContent>
                 </Card>
             </Container>
+            <AlertDialog open={showAlert}>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>¡Registro exitoso!</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            En unos instantes vas a recibir un correo
+                            electrónico para confirmar tu cuenta y poder iniciar
+                            sesión.
+                            <br />
+                            No olvides revisar tu bandeja de spam.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogAction onClick={() => setShowAlert(false)}>
+                            Cerrar
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </Section>
     );
 }
