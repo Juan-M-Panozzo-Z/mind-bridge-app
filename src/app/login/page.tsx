@@ -50,6 +50,7 @@ const FormSchema = z.object({
 
 export default function LoginPage() {
     const [captchaToken, setCaptchaToken] = useState();
+    const [size, setSize] = useState<"normal" | "compact">("compact");
     const captcha = useRef();
 
     const [showPassword, setShowPassword] = useState(false);
@@ -98,6 +99,8 @@ export default function LoginPage() {
                 router.push("/");
             }
         })();
+
+        getWindowsSize();
     }, [supabase, router]);
 
     const toggleShowPassword = () => {
@@ -105,6 +108,14 @@ export default function LoginPage() {
     };
 
     const isLoading = form.formState.isSubmitting;
+
+    const getWindowsSize = () => {
+        if (window.innerWidth <= 768) {
+            setSize("compact");
+        } else {
+            setSize("normal");
+        }
+    }
 
     return (
         <Section className="min-h-screen flex items-center justify-cente">
@@ -179,20 +190,20 @@ export default function LoginPage() {
                                     )}
                                 />
 
-                                <Box className="scale-75 md:scale-100 flex justify-center">
-                                <HCaptcha
-                                    languageOverride="es"
-                                    ref={captcha as any}
-                                    sitekey={
-                                        process.env
-                                            .NEXT_PUBLIC_HCAPTCHA_SITE_KEY!
-                                    }
-                                    onVerify={(token) => {
-                                        console.log(token);
-                                        setCaptchaToken(token as any);
-                                    }}
-                                />
-                                </Box>
+                                <FormItem className="flex justify-center">
+                                    <HCaptcha
+                                        size={size}
+                                        languageOverride="es"
+                                        ref={captcha as any}
+                                        sitekey={
+                                            process.env
+                                                .NEXT_PUBLIC_HCAPTCHA_SITE_KEY!
+                                        }
+                                        onVerify={(token) =>
+                                            setCaptchaToken(token as any)
+                                        }
+                                    />
+                                </FormItem>
 
                                 <Box className="flex flex-col gap-4">
                                     <Button
