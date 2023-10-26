@@ -18,7 +18,9 @@ export default async function Home() {
     return (
         <main>
             <Navbar />
+            <div className="mt-4">
             <CreateCircle />
+            </div>
         </main>
     );
 }
