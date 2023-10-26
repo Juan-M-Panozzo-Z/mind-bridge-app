@@ -10,11 +10,11 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 // Nextjs & React
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 // Radix UI
 import { Box, Container, Section } from "@radix-ui/themes";
-import { EyeClosedIcon, EyeOpenIcon } from "@radix-ui/react-icons";
 
 // Shadcn UI
 import {
@@ -47,7 +47,9 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import Link from "next/link";
+
+// Lucide Icons
+import { Eye, EyeOff } from "lucide-react";
 
 // Types
 const formSchema = z.object({
@@ -249,9 +251,9 @@ export default function RegisterPage() {
                                                         }
                                                     >
                                                         {showPassword ? (
-                                                            <EyeOpenIcon />
+                                                            <Eye />
                                                         ) : (
-                                                            <EyeClosedIcon />
+                                                            <EyeOff />
                                                         )}
                                                     </Button>
                                                 </Box>
@@ -331,7 +333,7 @@ export default function RegisterPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="underline"
-                                >
+                            >
                                 Política de Privacidad
                             </Link>
                             {" | "}
@@ -340,7 +342,7 @@ export default function RegisterPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="underline"
-                                >
+                            >
                                 Términos de Servicio{" "}
                             </Link>
                         </CardDescription>

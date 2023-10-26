@@ -1,4 +1,3 @@
-import { Container } from "@radix-ui/themes";
 import { Button } from "./ui/button";
 
 export default function Navbar() {

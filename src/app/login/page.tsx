@@ -13,11 +13,11 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 // Nextjs & React
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 // Radix UI
 import { Box, Container, Section } from "@radix-ui/themes";
-import { EyeClosedIcon, EyeOpenIcon, UpdateIcon } from "@radix-ui/react-icons";
 
 // Shadcn UI
 import {
@@ -38,7 +38,9 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
+
+// Lucide Icons
+import { Eye, EyeOff } from "lucide-react";
 
 // Types
 const FormSchema = z.object({
@@ -180,9 +182,9 @@ export default function LoginPage() {
                                                         }
                                                     >
                                                         {showPassword ? (
-                                                            <EyeOpenIcon />
+                                                            <Eye />
                                                         ) : (
-                                                            <EyeClosedIcon />
+                                                            <EyeOff />
                                                         )}
                                                     </Button>
                                                 </Box>
@@ -213,9 +215,6 @@ export default function LoginPage() {
                                         variant={"default"}
                                         type="submit"
                                     >
-                                        {isLoading && (
-                                            <UpdateIcon className="animate-spin w-4 h-4 mr-2" />
-                                        )}
                                         Iniciar sesión
                                     </Button>
                                     <Button
