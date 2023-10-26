@@ -2,7 +2,8 @@ import Navbar from "@/components/Navbar";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import CreateCircle from '../components/CreateCircle';
+import CreateCircle from "../components/CreateCircle";
+import { Section } from "@radix-ui/themes";
 
 export const dynamic = "force-dynamic";
 
@@ -18,9 +19,9 @@ export default async function Home() {
     return (
         <main>
             <Navbar />
-            <div className="mt-4">
-            <CreateCircle />
-            </div>
+            <section className="container mx-auto mt-4">
+                <CreateCircle />
+            </section>
         </main>
     );
 }
