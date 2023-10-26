@@ -3,7 +3,6 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import CreateCircle from "../components/CreateCircle";
-import { Section } from "@radix-ui/themes";
 
 export const dynamic = "force-dynamic";
 
