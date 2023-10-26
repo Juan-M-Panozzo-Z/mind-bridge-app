@@ -1,5 +1,5 @@
 import { Box, Container, Flex, Text } from "@radix-ui/themes";
-import { LuFilePlus } from "react-icons/lu";
+import {FilePlus} from 'lucide-react'
 import { Button } from "./ui/button";
 import SectionComponent from "./ui/section";
 
@@ -17,7 +17,7 @@ export default function CreateCircle() {
                     </Flex>
                     <Box>
                         <Button type="button" variant={"ghost"} size={"icon"}>
-                            <LuFilePlus className={"h-6 w-6"} />
+                            <FilePlus size={24} />
                         </Button>
                     </Box>
                 </Box>
