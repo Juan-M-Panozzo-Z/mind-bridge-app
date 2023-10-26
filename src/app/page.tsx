@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
-import { Box, Text } from "@radix-ui/themes";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import CreateCircle from '../components/CreateCircle';
 
 export const dynamic = "force-dynamic";
 
@@ -18,9 +18,7 @@ export default async function Home() {
     return (
         <main>
             <Navbar />
-            <Box>
-                <Text size={"5"}>Hola, {session.user.email}</Text>
-            </Box>
+            <CreateCircle />
         </main>
     );
 }
