@@ -6,7 +6,7 @@ export default function SectionComponent({
     children: React.ReactNode;
 }) {
     return (
-        <Section className="bg-background rounded-xl border drop-shadow">
+        <Section className="bg-background rounded-xl border shadow-sm">
             {children}
         </Section>
     );
