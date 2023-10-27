@@ -122,7 +122,7 @@ export default function LoginPage() {
     // };
 
     return (
-        <Section className="min-h-screen flex items-center justify-cente">
+        <Section className="min-h-screen flex items-center justify-center">
             <Container size="1" className="p-4">
                 <Card>
                     <CardHeader>
