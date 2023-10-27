@@ -37,7 +37,8 @@ import {
 } from "@/components/ui/card";
 
 // HCaptcha
-import HCaptcha from "@hcaptcha/react-hcaptcha";
+// import HCaptcha from "@hcaptcha/react-hcaptcha";
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -80,9 +81,9 @@ const formSchema = z.object({
 });
 
 export default function RegisterPage() {
-    const [captchaToken, setCaptchaToken] = useState();
-    const [size, setSize] = useState<"normal" | "compact">("compact");
-    const captcha = useRef();
+    // const [captchaToken, setCaptchaToken] = useState();
+    // const [size, setSize] = useState<"normal" | "compact">("compact");
+    // const captcha = useRef();
     const [showPassword, setShowPassword] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
 
@@ -101,9 +102,9 @@ export default function RegisterPage() {
         },
     });
 
-    useEffect(() => {
-        getWindowsSize();
-    }, []);
+    // useEffect(() => {
+    //     getWindowsSize();
+    // }, []);
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         const {
@@ -112,7 +113,7 @@ export default function RegisterPage() {
             email: values.email,
             password: values.password,
             options: {
-                captchaToken,
+                // captchaToken,
                 data: {
                     name: values.name,
                     lastName: values.lastName,
@@ -123,7 +124,7 @@ export default function RegisterPage() {
         });
         if (user) {
             // @ts-ignore
-            captcha.current?.resetCaptcha();
+            // captcha.current?.resetCaptcha();
             setShowAlert(true);
             form.reset();
         }
@@ -133,13 +134,13 @@ export default function RegisterPage() {
         setShowPassword((prev) => !prev);
     };
 
-    const getWindowsSize = () => {
-        if (window.innerWidth <= 768) {
-            setSize("compact");
-        } else {
-            setSize("normal");
-        }
-    };
+    // const getWindowsSize = () => {
+    //     if (window.innerWidth <= 768) {
+    //         setSize("compact");
+    //     } else {
+    //         setSize("normal");
+    //     }
+    // };
 
     return (
         <Section className="min-h-screen flex items-center justify-center">
@@ -294,7 +295,7 @@ export default function RegisterPage() {
                                         </FormItem>
                                     )}
                                 />
-                                <FormItem className="flex justify-center">
+                                {/* <FormItem className="flex justify-center">
                                     <HCaptcha
                                         size={size}
                                         languageOverride="es"
@@ -307,7 +308,7 @@ export default function RegisterPage() {
                                             setCaptchaToken(token as any)
                                         }
                                     />
-                                </FormItem>
+                                </FormItem> */}
                                 <Box className="flex flex-col gap-4">
                                     <Button type="submit">Registrarse</Button>
                                     <Button

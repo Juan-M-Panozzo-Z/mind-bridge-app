@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 // HCaptcha
-import HCaptcha from "@hcaptcha/react-hcaptcha";
+// import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 // Nextjs & React
 import { useRouter } from "next/navigation";
@@ -53,9 +53,9 @@ const FormSchema = z.object({
 });
 
 export default function LoginPage() {
-    const [captchaToken, setCaptchaToken] = useState();
-    const [size, setSize] = useState<"normal" | "compact">("compact");
-    const captcha = useRef();
+    // const [captchaToken, setCaptchaToken] = useState();
+    // const [size, setSize] = useState<"normal" | "compact">("compact");
+    // const captcha = useRef();
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -75,7 +75,7 @@ export default function LoginPage() {
             const { error } = await supabase.auth.signInWithPassword({
                 email: values.email,
                 password: values.password,
-                options: { captchaToken },
+                // options: { captchaToken },
             });
             if (error) {
                 form.setError("email", {
@@ -88,7 +88,7 @@ export default function LoginPage() {
                 });
             } else {
                 // @ts-ignore
-                captcha.current?.resetCaptcha();
+                // captcha.current?.resetCaptcha();
                 router.push("/");
             }
         })();
@@ -104,7 +104,7 @@ export default function LoginPage() {
             }
         })();
 
-        getWindowsSize();
+        // getWindowsSize();
     }, [supabase, router]);
 
     const toggleShowPassword = () => {
@@ -113,13 +113,13 @@ export default function LoginPage() {
 
     const isLoading = form.formState.isSubmitting;
 
-    const getWindowsSize = () => {
-        if (window.innerWidth <= 768) {
-            setSize("compact");
-        } else {
-            setSize("normal");
-        }
-    };
+    // const getWindowsSize = () => {
+    //     if (window.innerWidth <= 768) {
+    //         setSize("compact");
+    //     } else {
+    //         setSize("normal");
+    //     }
+    // };
 
     return (
         <Section className="min-h-screen flex items-center justify-cente">
@@ -194,7 +194,7 @@ export default function LoginPage() {
                                     )}
                                 />
 
-                                <FormItem className="flex justify-center">
+                                {/* <FormItem className="flex justify-center">
                                     <HCaptcha
                                         size={size}
                                         languageOverride="es"
@@ -207,7 +207,7 @@ export default function LoginPage() {
                                             setCaptchaToken(token as any)
                                         }
                                     />
-                                </FormItem>
+                                </FormItem> */}
 
                                 <Box className="flex flex-col gap-4">
                                     <Button
