@@ -14,10 +14,12 @@ export default function Modal({
     open,
     setOpen,
     title,
+    description,
 }: {
     open: boolean;
     setOpen: (open: boolean) => void;
     title: string;
+    description: string;
 }) {
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
@@ -26,13 +28,12 @@ export default function Modal({
                 <AlertDialogHeader>
                     <AlertDialogTitle>{title}</AlertDialogTitle>
                     <AlertDialogDescription>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Neque, perspiciatis!
+                        {description}
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogAction>action</AlertDialogAction>
-                    <AlertDialogCancel>cancel</AlertDialogCancel>
+                    <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                    <AlertDialogAction>Aceptar</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

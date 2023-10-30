@@ -10,15 +10,17 @@ import Modal from "./Modal";
 export default function DailyAppointments() {
     const [open, setOpen] = useState(false);
 
+    const title = "Encuentros del día";
+    const description = "Aquí podrás ver los encuentros que tienes y realizar un seguimiento de los mismos."
+
     return (
         <SectionComponent>
             <Container size={"4"} className="px-4">
                 <Box className="flex items-center justify-between">
                     <Flex direction={"column"}>
-                        <Text size={"2"}>Encuentros del día</Text>
+                        <Text size={"2"}>{title}</Text>
                         <Text size={"1"} className="text-foreground/70">
-                            Aquí podrás ver los encuentros que tienes y realizar
-                            un seguimiento de los mismos.
+                            {description}
                         </Text>
                     </Flex>
                     <Box>
@@ -33,7 +35,7 @@ export default function DailyAppointments() {
                     </Box>
                 </Box>
             </Container>
-            <Modal open={open} setOpen={setOpen} title={"DailyAppointments"} />
+            <Modal open={open} setOpen={setOpen} title={title} description={description} />
         </SectionComponent>
     );
 }
