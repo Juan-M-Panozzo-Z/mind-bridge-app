@@ -1,9 +1,15 @@
+"use client";
+import { useState } from "react";
+
 import { Box, Container, Flex, Text } from "@radix-ui/themes";
 import SectionComponent from "./ui/section";
 import { Button } from "./ui/button";
-import { PlusCircle } from "lucide-react";
+import { Search } from "lucide-react";
+import Modal from "./Modal";
 
 export default function DailyAppointments() {
+    const [open, setOpen] = useState(false);
+
     return (
         <SectionComponent>
             <Container size={"4"} className="px-4">
@@ -15,9 +21,19 @@ export default function DailyAppointments() {
                             un seguimiento de los mismos.
                         </Text>
                     </Flex>
-                    <Box></Box>
+                    <Box>
+                        <Button
+                            onClick={() => setOpen(true)}
+                            type="button"
+                            variant={"ghost"}
+                            size={"icon"}
+                        >
+                            <Search size={24} />
+                        </Button>
+                    </Box>
                 </Box>
             </Container>
+            <Modal open={open} setOpen={setOpen} title={"DailyAppointments"} />
         </SectionComponent>
     );
 }

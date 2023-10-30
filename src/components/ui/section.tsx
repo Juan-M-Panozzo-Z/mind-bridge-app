@@ -7,8 +7,8 @@ export default function SectionComponent({
 }) {
     return (
         <Section
-            size={"2"}
-            className="bg-background rounded-xl border shadow-sm min-h-[150px]"
+            size={"1"}
+            className="bg-background rounded-lg drop-shadow min-h-[150px]"
         >
             {children}
         </Section>

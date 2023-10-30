@@ -1,9 +1,14 @@
+'use client';
+import { useState } from "react";
+
 import { Box, Container, Flex, Text } from "@radix-ui/themes";
-import {PlusCircle} from 'lucide-react'
+import { Plus } from "lucide-react";
 import { Button } from "./ui/button";
 import SectionComponent from "./ui/section";
+import Modal from "./Modal";
 
 export default function CreateCircle() {
+    const [open, setOpen] = useState(false);
     return (
         <SectionComponent>
             <Container size={"4"} className="px-4">
@@ -16,12 +21,18 @@ export default function CreateCircle() {
                         </Text>
                     </Flex>
                     <Box>
-                        <Button type="button" variant={"ghost"} size={"icon"}>
-                            <PlusCircle size={24} />
+                        <Button
+                            onClick={() => setOpen(true)}
+                            type="button"
+                            variant={"ghost"}
+                            size={"icon"}
+                        >
+                            <Plus size={24} />
                         </Button>
                     </Box>
                 </Box>
             </Container>
+            <Modal open={open} setOpen={setOpen} title={"createCircle"}/>
         </SectionComponent>
     );
 }
