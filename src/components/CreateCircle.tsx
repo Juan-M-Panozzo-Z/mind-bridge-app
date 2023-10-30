@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import * as share from "react-share";
 
 import { Box, Container, Flex, Text } from "@radix-ui/themes";
 import { Plus } from "lucide-react";
@@ -36,7 +37,12 @@ export default function CreateCircle() {
                     </Box>
                 </Box>
             </Container>
-            <Modal open={open} setOpen={setOpen} title={title} description={description} />
+            <Modal
+                open={open}
+                setOpen={setOpen}
+                title={title}
+                description={description}
+            />
         </SectionComponent>
     );
 }
