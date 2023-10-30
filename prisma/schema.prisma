@@ -10,22 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model patient {
+model patients {
   id        String   @id @default(uuid())
   dni       Int      @unique
   name      String
   lastName  String
-  circles   circle[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model circle {
+model circles {
   id        String   @id @default(uuid())
-  name      String
-  password  String
-  patient   patient  @relation(fields: [patientId], references: [id])
-  patientId String
+  name      String  @unique
+  owner     String
+  password  String  @default("")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

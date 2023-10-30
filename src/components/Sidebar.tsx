@@ -45,7 +45,7 @@ export default function Sidebar() {
                         <User className="mr-2" />
                         <span className="font-normal text-xs">Pacientes</span>
                     </Link>
-                    <Link href="/" className="flex items-center">
+                    <Link href="/circles" className="flex items-center">
                         <CircleDashed className="mr-2" />
                         <span className="font-normal text-xs">Circulos</span>
                     </Link>

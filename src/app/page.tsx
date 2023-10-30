@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 import CreateCircle from "../components/CreateCircle";
 import { Box } from "@radix-ui/themes";
 import DailyAppointments from "@/components/DailyAppointments";
+import { Input } from "@/components/ui/input";
+import SectionComponent from "@/components/ui/section";
+import { createCircle } from "@/lib/actions/circles";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +29,23 @@ export default async function Home() {
                 </Box>
                 <Box className="md:col-span-2">
                     <DailyAppointments />
+                </Box>
+                <Box className="md:col-span-3">
+                    <SectionComponent>
+                        <form action={createCircle}>
+                            <Input
+                                type="text"
+                                name="name"
+                                placeholder="Nombre del círculo"
+                            />
+                            <Input
+                                type="password"
+                                name="password"
+                                placeholder="password"
+                            />
+                            <Input type="submit" value="Crear círculo" />
+                        </form>
+                    </SectionComponent>
                 </Box>
             </section>
         </main>
