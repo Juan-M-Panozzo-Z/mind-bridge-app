@@ -2,9 +2,9 @@
 
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { Database } from "../database.types";
+import type { Database } from "../database.types";
 
-const supabase = createServerComponentClient({ cookies });
+const supabase = createServerComponentClient<Database>({ cookies });
 
 export const fetchCircles = async () => {
     const { data, error } = await supabase.from("circles").select("*");
@@ -22,11 +22,7 @@ export const createCircle = async (formData: FormData) => {
     } = await supabase.auth.getSession();
     const owner = session?.user?.id;
 
-    const { error } = await supabase.from("circles").insert({
-        ...formData,
-        owner,
-        updatedAt: new Date(),
-    });
+    const { error } = await supabase.from("circles").insert({});
 
     if (error) {
         throw error;
