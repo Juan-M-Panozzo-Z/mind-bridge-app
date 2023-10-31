@@ -1,13 +1,15 @@
 "use server";
 
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import type { Database } from "../database.types";
 
-const supabase = createServerComponentClient<Database>({ cookies });
+import type { Database } from "../database.types";
+import { revalidatePath } from "next/cache";
+
+const supabase = createServerActionClient<Database>({ cookies });
 
 export const fetchCircles = async () => {
-    const { data, error } = await supabase.from("circles").select("*");
+    const { data, error } = await supabase.from("circles").select();
 
     if (error) {
         throw error;
@@ -16,43 +18,44 @@ export const fetchCircles = async () => {
     return data;
 };
 
-export const createCircle = async (formData: FormData) => {
-    const {
-        data: { session },
-    } = await supabase.auth.getSession();
-    const owner = session?.user?.id;
+export const insertCircle = async (formData: FormData) => {
+    "use server";
 
-    const { error } = await supabase.from("circles").insert({});
+    const name = formData.get("name") as string;
+    const password = formData.get("password") as string;
+    const { data } = await supabase.auth.getSession();
+    const owner = data.session?.user.id as string;
 
-    if (error) {
-        throw error;
-    }
-
-    return true;
-};
-
-export const updateCircle = async (circleId: string, formData: FormData) => {
-    const { error } = await supabase.from("circles").update({
-        ...formData,
-        updatedAt: new Date(),
+    const { error } = await supabase.from("circles").insert({
+        name,
+        password,
+        owner,
     });
 
     if (error) {
-        throw error;
+        console.error(error);
+        return;
     }
 
-    return true;
+    return revalidatePath("/circles");
 };
 
-export const deleteCircle = async (circleId: string) => {
-    const { error } = await supabase
-        .from("circles")
-        .delete()
-        .match({ id: circleId });
+export const deleteCircle = async (formData: FormData) => {
+    const id = formData.get("id") as string;
+    const { error } = await supabase.from("circles").delete().match({ id });
 
     if (error) {
-        throw error;
+        console.error(error);
+        return;
     }
 
-    return true;
+    return revalidatePath("/circles");
+};
+
+export const updateCircle = async (formData: FormData) => {
+    const id = formData.get("id") as string;
+
+    console.log(id);
+
+    return;
 };
