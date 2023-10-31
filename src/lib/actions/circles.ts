@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 
 import type { Database } from "../database.types";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 const supabase = createServerActionClient<Database>({ cookies });
 
@@ -37,7 +38,7 @@ export const insertCircle = async (formData: FormData) => {
         return;
     }
 
-    return revalidatePath("/circles");
+    return redirect("/circles");
 };
 
 export const deleteCircle = async (formData: FormData) => {
