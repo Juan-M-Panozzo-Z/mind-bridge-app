@@ -30,23 +30,6 @@ export default async function Home() {
                 <Box className="md:col-span-2">
                     <DailyAppointments />
                 </Box>
-                <Box className="md:col-span-3">
-                    <SectionComponent>
-                        <form action={createCircle}>
-                            <Input
-                                type="text"
-                                name="name"
-                                placeholder="Nombre del círculo"
-                            />
-                            <Input
-                                type="password"
-                                name="password"
-                                placeholder="password"
-                            />
-                            <Input type="submit" value="Crear círculo" />
-                        </form>
-                    </SectionComponent>
-                </Box>
             </section>
         </main>
     );
