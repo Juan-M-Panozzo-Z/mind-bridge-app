@@ -1,9 +1,6 @@
 import { Box, Container, Flex, Text } from "@radix-ui/themes";
 import SectionComponent from "@/components/ui/section";
-import { Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Create from "./Testing";
+import Create from "./FormCreateCircle";
 
 export default async function CreateCircle() {
     const title = "Crear círculo";
@@ -21,11 +18,6 @@ export default async function CreateCircle() {
                         </Text>
                     </Flex>
                     <Box>
-                        {/* <Link href={"/circles/create"}>
-                            <Button variant={"ghost"}>
-                                <Plus />
-                            </Button>
-                        </Link> */}
                         <Create />
                     </Box>
                 </Box>

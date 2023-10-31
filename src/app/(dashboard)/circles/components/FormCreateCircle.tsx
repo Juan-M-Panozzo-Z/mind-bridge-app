@@ -1,3 +1,4 @@
+import InputComponent from "@/components/Input";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -10,8 +11,11 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { FormControl, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { insertCircle } from "@/lib/actions/circles";
+import { Box } from "@radix-ui/themes";
 import { Plus } from "lucide-react";
 
 export default async function Create() {
@@ -31,12 +35,9 @@ export default async function Create() {
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <form action={insertCircle} className="space-y-4 mt-4">
-                    <Input type="text" name="name" placeholder="Nombre" />
-                    <Input
-                        type="password"
-                        name="password"
-                        placeholder="Contraseña"
-                    />
+                    <InputComponent label="Nombre" name="name" type="text" />
+                    <InputComponent label="Paciente" name="patient" type="text" />
+                    <InputComponent label="Contraseña" name="password" type="password" />
                     <AlertDialogFooter>
                         <AlertDialogCancel>Cancelar</AlertDialogCancel>
                         <AlertDialogAction type="submit">
