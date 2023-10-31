@@ -6,6 +6,16 @@ import { Database } from "../database.types";
 
 const supabase = createServerComponentClient({ cookies });
 
+export const fetchCircles = async () => {
+    const { data, error } = await supabase.from("circles").select("*");
+
+    if (error) {
+        throw error;
+    }
+
+    return data;
+};
+
 export const createCircle = async (formData: FormData) => {
     const {
         data: { session },
@@ -13,8 +23,7 @@ export const createCircle = async (formData: FormData) => {
     const owner = session?.user?.id;
 
     const { error } = await supabase.from("circles").insert({
-        name: formData.get("name"),
-        password: formData.get("password"),
+        ...formData,
         owner,
         updatedAt: new Date(),
     });
@@ -26,12 +35,28 @@ export const createCircle = async (formData: FormData) => {
     return true;
 };
 
-export const fetchCircles = async () => {
-    const { data, error } = await supabase.from("circles").select("*");
+export const updateCircle = async (circleId: string, formData: FormData) => {
+    const { error } = await supabase.from("circles").update({
+        ...formData,
+        updatedAt: new Date(),
+    });
 
     if (error) {
         throw error;
     }
 
-    return data;
+    return true;
+};
+
+export const deleteCircle = async (circleId: string) => {
+    const { error } = await supabase
+        .from("circles")
+        .delete()
+        .match({ id: circleId });
+
+    if (error) {
+        throw error;
+    }
+
+    return true;
 };
