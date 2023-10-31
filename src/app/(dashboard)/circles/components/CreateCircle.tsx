@@ -3,6 +3,7 @@ import SectionComponent from "@/components/ui/section";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Create from "./Testing";
 
 export default async function CreateCircle() {
     const title = "Crear círculo";
@@ -20,11 +21,12 @@ export default async function CreateCircle() {
                         </Text>
                     </Flex>
                     <Box>
-                        <Link href={"/circles/create"}>
+                        {/* <Link href={"/circles/create"}>
                             <Button variant={"ghost"}>
                                 <Plus />
                             </Button>
-                        </Link>
+                        </Link> */}
+                        <Create />
                     </Box>
                 </Box>
             </Container>
