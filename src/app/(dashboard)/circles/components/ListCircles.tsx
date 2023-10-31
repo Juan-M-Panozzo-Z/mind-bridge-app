@@ -40,7 +40,9 @@ export default async function ListCircles() {
                             <TableRow>
                                 <TableHead>Nombre</TableHead>
                                 <TableHead>Fecha de creación</TableHead>
-                                <TableHead>Acciones</TableHead>
+                                <TableHead className="text-right">
+                                    Acciones
+                                </TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
