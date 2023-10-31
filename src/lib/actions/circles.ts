@@ -33,7 +33,5 @@ export const fetchCircles = async () => {
         throw error;
     }
 
-    console.log(data, error);
-
     return data;
 };
