@@ -1,5 +1,5 @@
 import CreateCircle from "@/app/(dashboard)/circles/components/CreateCircle";
-import { Box, Section, Text } from "@radix-ui/themes";
+import { Section } from "@radix-ui/themes";
 import ListCircles from "./components/ListCircles";
 
 export default function CirclesPage() {
