@@ -1,4 +1,4 @@
-import { deleteCircle, fetchCircles } from "@/lib/actions/circles";
+import { deleteCircle, fetchCirclesByOwner } from "@/lib/actions/circles";
 
 import { Box, Container, Flex, Text } from "@radix-ui/themes";
 import SectionComponent from "@/components/ui/section";
@@ -21,7 +21,7 @@ export default async function ListCircles() {
     const description =
         "Aquí podrás ver los círculos que has creado y eliminarlos";
 
-    const circles = await fetchCircles();
+    const circles = await fetchCirclesByOwner();
     return (
         <SectionComponent>
             <Container size={"4"} className="px-4">

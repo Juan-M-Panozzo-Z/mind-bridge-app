@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 const supabase = createServerActionClient<Database>({ cookies });
 
 export const fetchCircles = async () => {
-    const { data, error } = await supabase.from("circles").select();
+    const { data, error } = await supabase.from("circles").select("*");
 
     if (error) {
         throw error;
@@ -19,9 +19,22 @@ export const fetchCircles = async () => {
     return data;
 };
 
-export const insertCircle = async (formData: FormData) => {
-    "use server";
+export const fetchCirclesByOwner = async () => {
+    const { data } = await supabase.auth.getSession();
+    const owner = data.session?.user.id as string;
+    const { data: res, error } = await supabase
+        .from("circles")
+        .select("*")
+        .match({ owner });
 
+    if (error) {
+        throw error;
+    }
+
+    return res;
+};
+
+export const insertCircle = async (formData: FormData) => {
     const name = formData.get("name") as string;
     const password = formData.get("password") as string;
     const { data } = await supabase.auth.getSession();
