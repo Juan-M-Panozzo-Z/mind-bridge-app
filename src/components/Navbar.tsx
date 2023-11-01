@@ -2,16 +2,19 @@ import { Box, Section } from "@radix-ui/themes";
 import { Button } from "./ui/button";
 import { BrainCog, LogOut } from "lucide-react";
 import Sidebar from "./Sidebar";
+import Link from "next/link";
 
 export default function Navbar() {
     return (
         <section className="bg-background p-4 border-b">
             <div className="mx-auto flex justify-between items-center">
-                    <Sidebar />
-                <Box className="flex gap-1 items-center text-foreground/80">
-                    <BrainCog />
-                    <h1 className="text-lg">Mind Bridge</h1>
-                </Box>
+                <Sidebar />
+                <Link href="/">
+                    <Box className="flex gap-1 items-center text-foreground/80">
+                        <BrainCog />
+                        <h1 className="text-lg">Mind Bridge</h1>
+                    </Box>
+                </Link>
                 <form action="auth/logout" method="POST">
                     <Button size={"icon"} variant={"ghost"}>
                         <LogOut />

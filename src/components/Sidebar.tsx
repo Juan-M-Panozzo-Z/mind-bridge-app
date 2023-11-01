@@ -2,7 +2,6 @@ import {
     BrainCog,
     CircleDashed,
     Cross,
-    Divide,
     HomeIcon,
     PanelLeftOpen,
     User,
@@ -11,12 +10,11 @@ import {
     Sheet,
     SheetClose,
     SheetContent,
-    SheetDescription,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from "./ui/sheet";
-import { Box, Flex, Text } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
