@@ -7,8 +7,8 @@ export default function Navbar() {
     return (
         <section className="bg-background p-4 border-b">
             <div className="mx-auto flex justify-between items-center">
-                <Box className="flex gap-1 items-center text-foreground/80">
                     <Sidebar />
+                <Box className="flex gap-1 items-center text-foreground/80">
                     <BrainCog />
                     <h1 className="text-lg">Mind Bridge</h1>
                 </Box>

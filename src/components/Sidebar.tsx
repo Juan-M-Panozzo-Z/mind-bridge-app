@@ -23,7 +23,7 @@ export default function Sidebar() {
     return (
         <Sheet>
             <SheetTrigger>
-                <Button size={"icon"} variant={"ghost"} className="mr-4">
+                <Button size={"icon"} variant={"ghost"}>
                     <PanelLeftOpen/>
                 </Button>
             </SheetTrigger>
