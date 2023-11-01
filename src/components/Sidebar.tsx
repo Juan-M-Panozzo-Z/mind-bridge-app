@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
     SheetHeader,
@@ -24,7 +25,7 @@ export default function Sidebar() {
         <Sheet>
             <SheetTrigger>
                 <Button size={"icon"} variant={"ghost"}>
-                    <PanelLeftOpen/>
+                    <PanelLeftOpen />
                 </Button>
             </SheetTrigger>
             <SheetContent side={"left"} className="w-56">
@@ -37,22 +38,36 @@ export default function Sidebar() {
                     </SheetTitle>
                 </SheetHeader>
                 <Box className="grid gap-4 py-8">
-                    <Link href="/" className="flex items-center">
-                        <HomeIcon className="mr-2" />
-                        <span className="font-normal text-xs">Inicio</span>
-                    </Link>
-                    <Link href="/" className="flex items-center">
-                        <User className="mr-2" />
-                        <span className="font-normal text-xs">Pacientes</span>
-                    </Link>
-                    <Link href="/circles" className="flex items-center">
-                        <CircleDashed className="mr-2" />
-                        <span className="font-normal text-xs">Circulos</span>
-                    </Link>
-                    <Link href="/" className="flex items-center">
-                        <Cross className="mr-2" />
-                        <span className="font-normal text-xs">Evoluciones</span>
-                    </Link>
+                    <SheetClose asChild>
+                        <Link href="/" className="flex items-center">
+                            <HomeIcon className="mr-2" />
+                            <span className="font-normal text-xs">Inicio</span>
+                        </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                        <Link href="/" className="flex items-center">
+                            <User className="mr-2" />
+                            <span className="font-normal text-xs">
+                                Pacientes
+                            </span>
+                        </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                        <Link href="/circles" className="flex items-center">
+                            <CircleDashed className="mr-2" />
+                            <span className="font-normal text-xs">
+                                Circulos
+                            </span>
+                        </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                        <Link href="/" className="flex items-center">
+                            <Cross className="mr-2" />
+                            <span className="font-normal text-xs">
+                                Evoluciones
+                            </span>
+                        </Link>
+                    </SheetClose>
                 </Box>
             </SheetContent>
         </Sheet>
