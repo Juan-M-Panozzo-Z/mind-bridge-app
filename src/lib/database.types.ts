@@ -16,6 +16,7 @@ export interface Database {
           name: string
           owner: string
           password: string
+          patient: string | null
           updated_at: string | null
         }
         Insert: {
@@ -24,6 +25,7 @@ export interface Database {
           name: string
           owner: string
           password: string
+          patient?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -32,12 +34,47 @@ export interface Database {
           name?: string
           owner?: string
           password?: string
+          patient?: string | null
           updated_at?: string | null
         }
         Relationships: [
           {
             foreignKeyName: "circles_owner_fkey"
             columns: ["owner"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          lastname: string | null
+          name: string | null
+          phone: number | null
+          userId: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          lastname?: string | null
+          name?: string | null
+          phone?: number | null
+          userId?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          lastname?: string | null
+          name?: string | null
+          phone?: number | null
+          userId?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_userId_fkey"
+            columns: ["userId"]
             referencedRelation: "users"
             referencedColumns: ["id"]
           }

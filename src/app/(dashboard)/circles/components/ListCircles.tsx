@@ -11,11 +11,12 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
 
-import { Trash2 } from "lucide-react";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 
 export default async function ListCircles() {
     const title = "Círculos";
@@ -41,16 +42,16 @@ export default async function ListCircles() {
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>Nombre</TableHead>
-                                    <TableHead>Fecha de creación</TableHead>
-                                    <TableHead className="text-right">
-                                        Acciones
-                                    </TableHead>
+                                    <TableHead>Paciente</TableHead>
+                                    <TableHead>Creación</TableHead>
+                                    <TableHead>Ver más</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {circles.map((circle) => (
                                     <TableRow key={circle.id}>
                                         <TableCell>{circle.name}</TableCell>
+                                        <TableCell>{circle.patient}</TableCell>
                                         <TableCell>
                                             {
                                                 circle.created_at
@@ -58,20 +59,14 @@ export default async function ListCircles() {
                                                     .split("T")[0]
                                             }
                                         </TableCell>
-                                        <TableCell align="right">
-                                            <form
-                                                action={deleteCircle}
-                                                className="inline-block"
+                                        <TableCell>
+                                            <Link
+                                                href={`/circles/${circle.id}`}
                                             >
-                                                <input
-                                                    type="hidden"
-                                                    name="id"
-                                                    value={circle.id}
-                                                />
                                                 <Button variant={"ghost"}>
-                                                    <Trash2 />
+                                                    <ArrowRight className="text-foreground/80" />
                                                 </Button>
-                                            </form>
+                                            </Link>
                                         </TableCell>
                                     </TableRow>
                                 ))}
