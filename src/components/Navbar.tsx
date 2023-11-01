@@ -42,7 +42,7 @@ export default function Navbar() {
                             <Link href={"/profile"}>
                                 <DropdownMenuItem>Perfil</DropdownMenuItem>
                             </Link>
-                            <form action="auth/logout" method="POST">
+                            <form action="/auth/logout" method="POST">
                                 <DropdownMenuItem>
                                     <button type="submit">Cerrar sesión</button>
                                 </DropdownMenuItem>
