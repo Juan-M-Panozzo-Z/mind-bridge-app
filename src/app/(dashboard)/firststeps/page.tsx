@@ -8,7 +8,7 @@ export default function FirstStepsPage() {
         <Section className="md:col-span-3 space-y-4">
             <SectionComponent>
                 <Container size="4" className="px-4">
-                    <Box className="grid grid-cols-2 gap-2">
+                    <Box className="grid md:grid-cols-2 gap-2">
                         <Flex
                             gap={"2"}
                             direction={"column"}
