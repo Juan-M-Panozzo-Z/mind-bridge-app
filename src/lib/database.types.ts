@@ -52,39 +52,46 @@ export interface Database {
           created_at: string
           dateOfBirth: string | null
           du: number
-          email: string | null
-          id: number
+          id: string
           lastname: string | null
           name: string | null
           phone: number | null
-          updated_at: string
-          userId: string | null
+          role: string | null
+          updated_at: string | null
+          userId: string
         }
         Insert: {
           created_at?: string
           dateOfBirth?: string | null
           du: number
-          email?: string | null
-          id?: number
+          id?: string
           lastname?: string | null
           name?: string | null
           phone?: number | null
-          updated_at?: string
-          userId?: string | null
+          role?: string | null
+          updated_at?: string | null
+          userId: string
         }
         Update: {
           created_at?: string
           dateOfBirth?: string | null
           du?: number
-          email?: string | null
-          id?: number
+          id?: string
           lastname?: string | null
           name?: string | null
           phone?: number | null
-          updated_at?: string
-          userId?: string | null
+          role?: string | null
+          updated_at?: string | null
+          userId?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "profiles_role_fkey"
+            columns: ["role"]
+            isOneToOne: false
+            referencedRelation: "roles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "profiles_userId_fkey"
             columns: ["userId"]
@@ -93,6 +100,24 @@ export interface Database {
             referencedColumns: ["id"]
           }
         ]
+      }
+      roles: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
       }
     }
     Views: {
