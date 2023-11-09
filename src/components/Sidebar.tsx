@@ -1,3 +1,6 @@
+import { getSession } from "@/lib/actions/session";
+import { getProfile } from "@/lib/actions/profile";
+import { getRole } from "@/lib/actions/roles";
 import {
     BrainCog,
     CircleDashed,
@@ -10,15 +13,19 @@ import {
     Sheet,
     SheetClose,
     SheetContent,
+    SheetDescription,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from "./ui/sheet";
-import { Box } from "@radix-ui/themes";
+import { Box, Text } from "@radix-ui/themes";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-export default function Sidebar() {
+export default async function Sidebar() {
+    const { session } = await getSession();
+    const profile = await getProfile(session?.user?.id as string);
+    const role = await getRole(profile?.role as string);
     return (
         <Sheet>
             <SheetTrigger>
@@ -31,9 +38,16 @@ export default function Sidebar() {
                     <SheetTitle>
                         <Box className="flex gap-1 items-center text-foreground/80">
                             <BrainCog />
-                            <h1 className="text-lg font-medium">Mind Bridge</h1>
+                            <Text size={"3"} className="font-medium">
+                                Mind Bridge
+                            </Text>
                         </Box>
                     </SheetTitle>
+                    <SheetDescription>
+                        {role?.name === "healthprof"
+                            ? "Profesional de la salud"
+                            : "Paciente"}
+                    </SheetDescription>
                 </SheetHeader>
                 <Box className="grid gap-4 py-8">
                     <SheetClose asChild>

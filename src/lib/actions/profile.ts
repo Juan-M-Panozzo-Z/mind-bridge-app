@@ -27,15 +27,15 @@ export const setProfile = async (formData: FormData) => {
         created_at: new Date().toISOString() as string,
         updated_at: new Date().toISOString() as string
     }
-    console.log(profile)
     const { error } = await supabase.from("profiles").upsert({
         ...profile
     })
 
-    if (error) {
-        const {error, data} = await supabase.from("profiles").update({
+
+    if (error?.details?.includes("already exists")) {
+        const {error} = await supabase.from("profiles").update({
             ...profile
         }).match({ du: profile.du })
-        console.log(error, data)
+        
     }
 }

@@ -1,6 +1,8 @@
-import { Box, Section } from "@radix-ui/themes";
+import { getSession } from "@/lib/actions/session";
+import { getRole } from "@/lib/actions/roles";
+import { Box, Flex } from "@radix-ui/themes";
 import { Button } from "./ui/button";
-import { BrainCog, LogOut, User2 } from "lucide-react";
+import { BrainCog, Stethoscope, User2 } from "lucide-react";
 import Sidebar from "./Sidebar";
 import Link from "next/link";
 import {
@@ -9,13 +11,17 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { getProfile } from "@/lib/actions/profile";
 
-export default function Navbar() {
+export default async function Navbar() {
+    const { session } = await getSession();
+    const profile = await getProfile(session?.user?.id as string);
+    const role = await getRole(profile?.role as string);
+
     return (
         <section className="bg-background p-4 border-b">
-            <div className="mx-auto flex items-center">
+            <Flex align={"center"}>
                 <Sidebar />
-
                 <Box className="flex-grow">
                     <Link href="/">
                         <Button
@@ -35,7 +41,11 @@ export default function Navbar() {
                                 size={"icon"}
                                 className="text-foreground/80"
                             >
-                                <User2 />
+                                {role?.name === "healthprof" ? (
+                                    <Stethoscope />
+                                ) : (
+                                    <User2 />
+                                )}
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
@@ -50,7 +60,7 @@ export default function Navbar() {
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </Box>
-            </div>
+            </Flex>
         </section>
     );
 }
