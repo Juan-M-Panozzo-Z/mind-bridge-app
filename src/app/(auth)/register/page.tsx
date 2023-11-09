@@ -60,24 +60,6 @@ const formSchema = z.object({
     password: z.string().min(8, {
         message: "La contraseña debe tener al menos 8 caracteres",
     }),
-    name: z.string().min(2, {
-        message: "El nombre debe tener al menos 2 caracteres",
-    }),
-    lastName: z.string().min(2, {
-        message: "El apellido debe tener al menos 2 caracteres",
-    }),
-    phone: z
-        .string()
-        .min(10, {
-            message: "El teléfono debe tener al menos 10 caracteres",
-        })
-        .optional(),
-    country: z
-        .string()
-        .min(2, {
-            message: "El país debe tener al menos 2 caracteres",
-        })
-        .optional(),
 });
 
 export default function RegisterPage() {
@@ -95,10 +77,6 @@ export default function RegisterPage() {
         defaultValues: {
             email: "",
             password: "",
-            // name: "",
-            // lastName: "",
-            // phone: "",
-            // country: "",
         },
     });
 
@@ -115,10 +93,6 @@ export default function RegisterPage() {
             // options: {
             // captchaToken,
             // data: {
-            // name: values.name,
-            // lastName: values.lastName,
-            // phone: values.phone,
-            // country: values.country,
             // },
             // },
         });
@@ -158,48 +132,6 @@ export default function RegisterPage() {
                                 onSubmit={form.handleSubmit(onSubmit)}
                                 className="space-y-8"
                             >
-                                {/* <FormField
-                                    control={form.control}
-                                    name="name"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>
-                                                Nombre
-                                                <span className="text-red-500 ml-1">
-                                                    *
-                                                </span>
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    placeholder="John"
-                                                    {...field}
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                /> */}
-                                {/* <FormField
-                                    control={form.control}
-                                    name="lastName"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>
-                                                Apellido
-                                                <span className="text-red-500 ml-1">
-                                                    *
-                                                </span>
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    placeholder="Doe"
-                                                    {...field}
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                /> */}
                                 <FormField
                                     control={form.control}
                                     name="email"
@@ -263,52 +195,6 @@ export default function RegisterPage() {
                                         </FormItem>
                                     )}
                                 />
-                                {/* <FormField
-                                    control={form.control}
-                                    name="phone"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Teléfono</FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    placeholder="1234567890"
-                                                    {...field}
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                /> */}
-                                {/* <FormField
-                                    control={form.control}
-                                    name="country"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>País</FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    placeholder="México"
-                                                    {...field}
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                /> */}
-                                {/* <FormItem className="flex justify-center">
-                                    <HCaptcha
-                                        size={size}
-                                        languageOverride="es"
-                                        ref={captcha as any}
-                                        sitekey={
-                                            process.env
-                                                .NEXT_PUBLIC_HCAPTCHA_SITE_KEY!
-                                        }
-                                        onVerify={(token) =>
-                                            setCaptchaToken(token as any)
-                                        }
-                                    />
-                                </FormItem> */}
                                 <Box className="flex flex-col gap-4">
                                     <Button type="submit">Registrarse</Button>
                                     <Button
