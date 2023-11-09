@@ -41,7 +41,7 @@ export default async function Navbar() {
                                 size={"icon"}
                                 className="text-foreground/80"
                             >
-                                {role?.name === "healthprof" ? (
+                                {role?.name === "profesional" ? (
                                     <Stethoscope />
                                 ) : (
                                     <User2 />

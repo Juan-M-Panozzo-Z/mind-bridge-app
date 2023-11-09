@@ -43,11 +43,7 @@ export default async function Sidebar() {
                             </Text>
                         </Box>
                     </SheetTitle>
-                    <SheetDescription>
-                        {role?.name === "healthprof"
-                            ? "Profesional de la salud"
-                            : "Paciente"}
-                    </SheetDescription>
+                    <SheetDescription>{role?.name}</SheetDescription>
                 </SheetHeader>
                 <Box className="grid gap-4 py-8">
                     <SheetClose asChild>
