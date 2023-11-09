@@ -8,7 +8,7 @@ export const getRoles = async () => {
     const {
         data,
         error
-    } = await supabase.from('roles').select('*').neq('name', 'admin');
+    } = await supabase.from('roles').select('*').neq('name', 'administrador');
     if (error) return;
     return data;
     };
