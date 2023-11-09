@@ -41,6 +41,7 @@ export interface Database {
           {
             foreignKeyName: "circles_owner_fkey"
             columns: ["owner"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -49,32 +50,45 @@ export interface Database {
       profiles: {
         Row: {
           created_at: string
-          id: string
+          dateOfBirth: string | null
+          du: number
+          email: string | null
+          id: number
           lastname: string | null
           name: string | null
           phone: number | null
+          updated_at: string
           userId: string | null
         }
         Insert: {
           created_at?: string
-          id?: string
+          dateOfBirth?: string | null
+          du: number
+          email?: string | null
+          id?: number
           lastname?: string | null
           name?: string | null
           phone?: number | null
+          updated_at?: string
           userId?: string | null
         }
         Update: {
           created_at?: string
-          id?: string
+          dateOfBirth?: string | null
+          du?: number
+          email?: string | null
+          id?: number
           lastname?: string | null
           name?: string | null
           phone?: number | null
+          updated_at?: string
           userId?: string | null
         }
         Relationships: [
           {
             foreignKeyName: "profiles_userId_fkey"
             columns: ["userId"]
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           }

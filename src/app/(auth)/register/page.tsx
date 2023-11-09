@@ -95,10 +95,10 @@ export default function RegisterPage() {
         defaultValues: {
             email: "",
             password: "",
-            name: "",
-            lastName: "",
-            phone: "",
-            country: "",
+            // name: "",
+            // lastName: "",
+            // phone: "",
+            // country: "",
         },
     });
 
@@ -112,15 +112,15 @@ export default function RegisterPage() {
         } = await supabase.auth.signUp({
             email: values.email,
             password: values.password,
-            options: {
-                // captchaToken,
-                data: {
-                    name: values.name,
-                    lastName: values.lastName,
-                    phone: values.phone,
-                    country: values.country,
-                },
-            },
+            // options: {
+            // captchaToken,
+            // data: {
+            // name: values.name,
+            // lastName: values.lastName,
+            // phone: values.phone,
+            // country: values.country,
+            // },
+            // },
         });
         if (user) {
             // @ts-ignore
@@ -158,7 +158,7 @@ export default function RegisterPage() {
                                 onSubmit={form.handleSubmit(onSubmit)}
                                 className="space-y-8"
                             >
-                                <FormField
+                                {/* <FormField
                                     control={form.control}
                                     name="name"
                                     render={({ field }) => (
@@ -178,8 +178,8 @@ export default function RegisterPage() {
                                             <FormMessage />
                                         </FormItem>
                                     )}
-                                />
-                                <FormField
+                                /> */}
+                                {/* <FormField
                                     control={form.control}
                                     name="lastName"
                                     render={({ field }) => (
@@ -199,7 +199,7 @@ export default function RegisterPage() {
                                             <FormMessage />
                                         </FormItem>
                                     )}
-                                />
+                                /> */}
                                 <FormField
                                     control={form.control}
                                     name="email"
@@ -263,7 +263,7 @@ export default function RegisterPage() {
                                         </FormItem>
                                     )}
                                 />
-                                <FormField
+                                {/* <FormField
                                     control={form.control}
                                     name="phone"
                                     render={({ field }) => (
@@ -278,8 +278,8 @@ export default function RegisterPage() {
                                             <FormMessage />
                                         </FormItem>
                                     )}
-                                />
-                                <FormField
+                                /> */}
+                                {/* <FormField
                                     control={form.control}
                                     name="country"
                                     render={({ field }) => (
@@ -294,7 +294,7 @@ export default function RegisterPage() {
                                             <FormMessage />
                                         </FormItem>
                                     )}
-                                />
+                                /> */}
                                 {/* <FormItem className="flex justify-center">
                                     <HCaptcha
                                         size={size}
