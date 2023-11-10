@@ -31,14 +31,16 @@ export default async function SetHealthprof() {
                             <form action={setHealthProf} className="space-y-2">
                                 <Input
                                 value={healthprof?.licence}
-                                    type="number"
+                                disabled={healthprof as undefined}
+                                type="number"
                                     name="licence"
                                     placeholder="Licencia"
                                 />
                                 <Select name="speciality">
                                     <SelectTrigger
                                     value={healthprof?.speciality as string}
-                                        name="speciality"
+                                    disabled={healthprof as undefined}
+                                    name="speciality"
                                         className="w-full"
                                     >
                                         <SelectValue
@@ -65,7 +67,8 @@ export default async function SetHealthprof() {
                                 </Select>
                                 <Input
                                 value={healthprof?.startDate}
-                                    type="date"
+                                disabled={healthprof as undefined}
+                                type="date"
                                     name="startDate"
                                     placeholder="Fecha de inicio"
                                 />

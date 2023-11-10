@@ -44,6 +44,7 @@ export default async function SetProfile() {
                             <Select name="role">
                                 <SelectTrigger
                                     value={profile?.role as string}
+                                    disabled={profile as undefined}
                                     name="role"
                                     className="w-full"
                                 >
@@ -55,6 +56,7 @@ export default async function SetProfile() {
                                             <SelectItem
                                                 key={role.id}
                                                 value={role.id.toString()}
+                                                disabled={profile as undefined}
                                                 className="text-foreground"
                                             >
                                                 {role.name}
@@ -65,30 +67,35 @@ export default async function SetProfile() {
                             </Select>
                             <Input
                                 value={profile?.du as number}
+                                disabled={profile as undefined}
                                 type="du"
                                 placeholder="Documento unico"
                                 name="du"
                             />
                             <Input
                                 value={profile?.name as string}
+                                disabled={profile as undefined}
                                 type="text"
                                 placeholder="Nombre"
                                 name="name"
                             />
                             <Input
                                 value={profile?.lastname as string}
+                                disabled={profile as undefined}
                                 type="text"
                                 placeholder="Apellido"
                                 name="lastname"
                             />
                             <Input
                                 value={profile?.dateOfBirth as string}
+                                disabled={profile as undefined}
                                 type="date"
                                 placeholder="Fecha de nacimiento"
                                 name="dateOfBirth"
                             />
                             <Input
                                 value={profile?.phone as number}
+                                disabled={profile as undefined}
                                 type="number"
                                 placeholder="Teléfono"
                                 name="phone"
