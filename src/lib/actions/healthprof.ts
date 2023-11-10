@@ -6,10 +6,13 @@ import { getProfile } from "./profile";
 
 const supabase = createServerActionClient<Database>({ cookies });
 
-export const getHealthProf = async (profileId: string) => {
-    const profile = getProfile();
-    console.log(profile);
-    const { data, error } = await supabase.from("healthprofesionals").select("*").match({ profileId }).single();
+export const getHealthProf = async () => {
+    const profile = await getProfile();
+    if (!profile) {
+        return;
+    }
+    const profileId = profile?.id;
+    const { data, error } = await supabase.from("healthprofesionals").select("*").match({ profileId });
 
     if (error) {
         return;
