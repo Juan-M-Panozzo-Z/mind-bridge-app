@@ -16,7 +16,6 @@ export interface Database {
           name: string
           owner: string
           password: string
-          patient: string | null
           updated_at: string | null
         }
         Insert: {
@@ -25,7 +24,6 @@ export interface Database {
           name: string
           owner: string
           password: string
-          patient?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -34,7 +32,6 @@ export interface Database {
           name?: string
           owner?: string
           password?: string
-          patient?: string | null
           updated_at?: string | null
         }
         Relationships: [

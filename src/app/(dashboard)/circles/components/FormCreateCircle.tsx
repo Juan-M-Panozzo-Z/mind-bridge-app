@@ -32,7 +32,6 @@ export default async function Create() {
                 </AlertDialogHeader>
                 <form action={insertCircle} className="space-y-4 mt-4">
                     <InputComponent label="Nombre" name="name" type="text" />
-                    <InputComponent label="Paciente" name="patient" type="text" />
                     <InputComponent label="Contraseña" name="password" type="password" />
                     <AlertDialogFooter>
                         <AlertDialogCancel>Cancelar</AlertDialogCancel>

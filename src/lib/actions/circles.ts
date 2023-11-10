@@ -37,14 +37,12 @@ export const fetchCirclesByOwner = async () => {
 export const insertCircle = async (formData: FormData) => {
     const name = formData.get("name") as string;
     const password = formData.get("password") as string;
-    const patient = formData.get("patient") as string;
     const { data } = await supabase.auth.getSession();
     const owner = data.session?.user.id as string;
 
     const { error } = await supabase.from("circles").insert({
         name,
         password,
-        patient,
         owner,
     });
 

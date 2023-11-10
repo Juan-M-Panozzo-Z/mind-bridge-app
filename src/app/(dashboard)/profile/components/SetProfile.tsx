@@ -14,6 +14,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import InputComponent from "@/components/Input";
+import { Label } from "@/components/ui/label";
 
 export default async function SetProfile() {
     const title = "Perfil de usuario";
@@ -41,38 +43,73 @@ export default async function SetProfile() {
                                 type="hidden"
                                 name="userId"
                             />
-                            <Select name="role">
-                                <SelectTrigger
-                                    value={profile?.role as string}
-                                    disabled={profile as undefined}
-                                    name="role"
-                                    className="w-full"
-                                >
-                                    <SelectValue
-                                        placeholder={role ? role.name : "Rol"}
-                                    />
-                                    <SelectContent>
-                                        {roles?.map((role) => (
-                                            <SelectItem
-                                                key={role.id}
-                                                value={role.id.toString()}
-                                                disabled={profile as undefined}
-                                                className="text-foreground"
-                                            >
-                                                {role.name}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </SelectTrigger>
-                            </Select>
-                            <Input
+                            <Box className="space-y-1.5">
+                                <Label>Rol</Label>
+                                <Select name="role">
+                                    <SelectTrigger
+                                        value={profile?.role as string}
+                                        disabled={profile as undefined}
+                                        name="role"
+                                        className="w-full"
+                                    >
+                                        <SelectValue
+                                            placeholder={
+                                                role ? role.name : "Rol"
+                                            }
+                                        />
+                                        <SelectContent>
+                                            {roles?.map((role) => (
+                                                <SelectItem
+                                                    key={role.id}
+                                                    value={role.id.toString()}
+                                                    disabled={
+                                                        profile as undefined
+                                                    }
+                                                    className="text-foreground"
+                                                >
+                                                    {role.name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </SelectTrigger>
+                                </Select>
+                            </Box>
+                            <InputComponent
                                 value={profile?.du as number}
-                                disabled={profile as undefined}
+                                label="Documento unico"
                                 type="du"
                                 placeholder="Documento unico"
                                 name="du"
                             />
-                            <Input
+                            <InputComponent
+                                value={profile?.name as string}
+                                label="Nombre"
+                                type="text"
+                                placeholder="Nombre"
+                                name="name"
+                            />
+                            <InputComponent
+                                value={profile?.lastname as string}
+                                label="Apellido"
+                                type="text"
+                                placeholder="Apellido"
+                                name="lastname"
+                            />
+                            <InputComponent
+                                value={profile?.dateOfBirth as string}
+                                label="Fecha de nacimiento"
+                                type="date"
+                                placeholder="Fecha de nacimiento"
+                                name="dateOfBirth"
+                            />
+                            <InputComponent
+                                value={profile?.phone as number}
+                                label="Teléfono"
+                                type="number"
+                                placeholder="Teléfono"
+                                name="phone"
+                            />
+                            {/* <Input
                                 value={profile?.name as string}
                                 disabled={profile as undefined}
                                 type="text"
@@ -99,7 +136,7 @@ export default async function SetProfile() {
                                 type="number"
                                 placeholder="Teléfono"
                                 name="phone"
-                            />
+                            /> */}
                             <Button type="submit">Guardar</Button>
                         </form>
                     </Box>

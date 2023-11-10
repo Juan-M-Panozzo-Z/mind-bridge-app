@@ -1,7 +1,15 @@
+import InputComponent from "@/components/Input";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import SectionComponent from "@/components/ui/section";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getHealthProf, setHealthProf } from "@/lib/actions/healthprof";
 import { getRole } from "@/lib/actions/roles";
@@ -29,47 +37,54 @@ export default async function SetHealthprof() {
                         </Flex>
                         <Box className="mt-4">
                             <form action={setHealthProf} className="space-y-2">
-                                <Input
-                                value={healthprof?.licence}
-                                disabled={healthprof as undefined}
-                                type="number"
+                                <InputComponent
+                                    value={healthprof?.licence}
+                                    type="number"
                                     name="licence"
+                                    label="Nº Licencia"
                                     placeholder="Licencia"
                                 />
-                                <Select name="speciality">
-                                    <SelectTrigger
-                                    value={healthprof?.speciality as string}
-                                    disabled={healthprof as undefined}
-                                    name="speciality"
-                                        className="w-full"
-                                    >
-                                        <SelectValue
-                                            placeholder={
-                                                healthprof?.specialities
-                                                    ? healthprof?.specialities.name
-                                                    : "Especialidad"
+                                <Box className="space-y-1.5">
+                                    <Label>Especialidad</Label>
+                                    <Select name="speciality">
+                                        <SelectTrigger
+                                            value={
+                                                healthprof?.speciality as string
                                             }
-                                        />
-                                        <SelectContent>
-                                            {specialities?.map(
-                                                (speciality) => (
-                                                    <SelectItem
-                                                        key={speciality.id}
-                                                        value={speciality.id.toString()}
-                                                        className="text-foreground"
-                                                    >
-                                                        {speciality.name}
-                                                    </SelectItem>
-                                                )
-                                            )}
-                                        </SelectContent>
-                                    </SelectTrigger>
-                                </Select>
-                                <Input
-                                value={healthprof?.startDate}
-                                disabled={healthprof as undefined}
-                                type="date"
+                                            disabled={healthprof as undefined}
+                                            name="speciality"
+                                            className="w-full"
+                                        >
+                                            <SelectValue
+                                                placeholder={
+                                                    healthprof?.specialities
+                                                        ? healthprof
+                                                              ?.specialities
+                                                              .name
+                                                        : "Especialidad"
+                                                }
+                                            />
+                                            <SelectContent>
+                                                {specialities?.map(
+                                                    (speciality) => (
+                                                        <SelectItem
+                                                            key={speciality.id}
+                                                            value={speciality.id.toString()}
+                                                            className="text-foreground"
+                                                        >
+                                                            {speciality.name}
+                                                        </SelectItem>
+                                                    )
+                                                )}
+                                            </SelectContent>
+                                        </SelectTrigger>
+                                    </Select>
+                                </Box>
+                                <InputComponent
+                                    value={healthprof?.startDate}
+                                    type="date"
                                     name="startDate"
+                                    label="Fecha de inicio"
                                     placeholder="Fecha de inicio"
                                 />
                                 <Button type="submit">Guardar</Button>

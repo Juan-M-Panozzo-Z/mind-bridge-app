@@ -42,7 +42,6 @@ export default async function ListCircles() {
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>Nombre</TableHead>
-                                    <TableHead>Paciente</TableHead>
                                     <TableHead>Creación</TableHead>
                                     <TableHead>Ver más</TableHead>
                                 </TableRow>
@@ -51,7 +50,6 @@ export default async function ListCircles() {
                                 {circles.map((circle) => (
                                     <TableRow key={circle.id}>
                                         <TableCell>{circle.name}</TableCell>
-                                        <TableCell>{circle.patient}</TableCell>
                                         <TableCell>
                                             {
                                                 circle.created_at
