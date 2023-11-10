@@ -4,7 +4,7 @@ import ListCircles from "./components/ListCircles";
 
 export default function CirclesPage() {
     return (
-        <Section className="md:col-span-3 space-y-4">
+        <Section size={"1"} className="md:col-span-3 space-y-4">
             <CreateCircle />
             <ListCircles />
         </Section>
