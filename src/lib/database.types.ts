@@ -50,34 +50,44 @@ export interface Database {
       healthprofesionals: {
         Row: {
           created_at: string
-          id: number
+          id: string
           licence: number
+          profileId: string
+          speciality: string
           startDate: string
           updated_at: string | null
-          userId: string | null
         }
         Insert: {
           created_at?: string
-          id?: number
+          id?: string
           licence: number
+          profileId: string
+          speciality: string
           startDate: string
           updated_at?: string | null
-          userId?: string | null
         }
         Update: {
           created_at?: string
-          id?: number
+          id?: string
           licence?: number
+          profileId?: string
+          speciality?: string
           startDate?: string
           updated_at?: string | null
-          userId?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "healthprofesionals_userId_fkey"
-            columns: ["userId"]
+            foreignKeyName: "healthprofesionals_profileId_fkey"
+            columns: ["profileId"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "healthprofesionals_speciality_fkey"
+            columns: ["speciality"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "specialities"
             referencedColumns: ["id"]
           }
         ]
@@ -151,6 +161,27 @@ export interface Database {
           created_at?: string
           id?: string
           name?: string
+        }
+        Relationships: []
+      }
+      specialities: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
