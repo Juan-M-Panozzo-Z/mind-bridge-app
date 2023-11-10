@@ -19,4 +19,10 @@ export const getRole = async (id: string) => {
     if (error) return;
     return data;
     }
-    
+
+export const getRoleByUserId = async (userId: string) => {
+    const { data, error } = await supabase.from('profiles').select('role').eq('userId', userId).single();
+    if (error) return;
+    const role = await getRole(data?.role as string);
+    return role?.name;
+    }

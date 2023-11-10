@@ -47,6 +47,41 @@ export interface Database {
           }
         ]
       }
+      healthprofesionals: {
+        Row: {
+          created_at: string
+          id: number
+          licence: number
+          startDate: string
+          updated_at: string | null
+          userId: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          licence: number
+          startDate: string
+          updated_at?: string | null
+          userId?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          licence?: number
+          startDate?: string
+          updated_at?: string | null
+          userId?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "healthprofesionals_userId_fkey"
+            columns: ["userId"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       profiles: {
         Row: {
           created_at: string
