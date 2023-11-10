@@ -1,4 +1,3 @@
-import { getSession } from "@/lib/actions/session";
 import { getRole } from "@/lib/actions/roles";
 import { Box, Flex } from "@radix-ui/themes";
 import { Button } from "./ui/button";
@@ -11,11 +10,8 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { getProfile } from "@/lib/actions/profile";
 
 export default async function Navbar() {
-    const { session } = await getSession();
-    const profile = await getProfile();
     const role = await getRole();
 
     return (

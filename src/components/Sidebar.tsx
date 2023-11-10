@@ -1,5 +1,3 @@
-import { getSession } from "@/lib/actions/session";
-import { getProfile } from "@/lib/actions/profile";
 import { getRole } from "@/lib/actions/roles";
 import {
     BrainCog,
@@ -23,9 +21,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 
 export default async function Sidebar() {
-    const { session } = await getSession();
-    const profile = await getProfile(session?.user?.id as string);
-    const role = await getRole(profile?.role as string);
+    const role = await getRole();
     return (
         <Sheet>
             <SheetTrigger>
