@@ -10,7 +10,7 @@ export default async function GetHealthprof() {
     const supabase = createServerComponentClient<Database>({ cookies });
     const { data } = await supabase.auth.getUser();
     const userId = data.user?.id;
-    const response = await getHealthProf(userId as string);
+    const response = await getHealthProf();
 
     if (!response) {
         return (
