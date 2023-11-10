@@ -15,8 +15,8 @@ import { getProfile } from "@/lib/actions/profile";
 
 export default async function Navbar() {
     const { session } = await getSession();
-    const profile = await getProfile(session?.user?.id as string);
-    const role = await getRole(profile?.role as string);
+    const profile = await getProfile();
+    const role = await getRole();
 
     return (
         <section className="bg-background p-4 border-b">
