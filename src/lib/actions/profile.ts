@@ -1,4 +1,5 @@
 'use server';
+import { revalidatePath } from 'next/cache'
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import type { Database } from "../database.types";
@@ -30,17 +31,15 @@ export const setProfile = async (formData: FormData) => {
         ...profile
     })
 
-
     if (error?.details?.includes("already exists")) {
         const {error} = await supabase.from("profiles").update({
             ...profile
         }).match({ du: profile.du })
-        
-    }
-
-    if (error) {
-        return;
+        if (error) {
+            return;
+        }
     }
     
-    return profile;
+    revalidatePath("/profile");
+    return;
 }
