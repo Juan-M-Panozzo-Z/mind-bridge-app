@@ -5,10 +5,9 @@ import type { Database } from "../database.types";
 
 const supabase = createServerActionClient<Database>({ cookies });
 
-
-export const getProfile = async (userId: string)  => {
-    const { data, error } = await supabase.from("profiles").select("*").match({ userId }).single();
-
+export const getProfile= async () => {
+    const userId = (await supabase.auth.getUser()).data.user?.id;
+    const { data, error } = await supabase.from("profiles").select("*").match({ userId: userId }).single();
     if (error) {
         return;
     }
@@ -38,4 +37,10 @@ export const setProfile = async (formData: FormData) => {
         }).match({ du: profile.du })
         
     }
+
+    if (error) {
+        return;
+    }
+    
+    return profile;
 }

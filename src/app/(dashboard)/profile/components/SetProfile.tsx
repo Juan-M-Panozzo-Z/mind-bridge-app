@@ -15,16 +15,15 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
-export default async function UpdateProfile() {
+export default async function SetProfile() {
     const title = "Perfil de usuario";
     const description = "Aquí podrás ver y editar tu información personal";
 
     const { session } = await getSession();
     const userId = session?.user.id;
-    const profile = await getProfile(userId as string);
+    const profile = await getProfile();
     const roles = await getRoles();
-    const role = await getRole(profile?.role as string);
-
+    const role = await getRole();
     return (
         <SectionComponent>
             <Suspense fallback={<Skeleton className="h-72 w-full" />}>

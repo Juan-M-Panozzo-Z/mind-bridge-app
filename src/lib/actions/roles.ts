@@ -14,15 +14,16 @@ export const getRoles = async () => {
     };
 
 
-export const getRole = async (id: string) => {
+export const getNameRole = async (id: string) => {
     const { data, error } = await supabase.from('roles').select('*').eq('id', id).single();
     if (error) return;
     return data;
     }
 
-export const getRoleByUserId = async (userId: string) => {
+export const getRole = async () => {
+    const userId = (await supabase.auth.getUser()).data.user?.id as string;
     const { data, error } = await supabase.from('profiles').select('role').eq('userId', userId).single();
     if (error) return;
-    const role = await getRole(data?.role as string);
-    return role?.name;
+    const role = await getNameRole(data?.role as string);
+    return role;
     }

@@ -4,6 +4,7 @@ import type { Database } from "@/lib/database.types";
 import { getHealthProf } from "../lib/actions/healthprof";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { AlertCircle } from "lucide-react";
+import Link from "next/link";
 
 export default async function GetHealthprof() {
     const supabase = createServerComponentClient<Database>({ cookies });
@@ -13,7 +14,8 @@ export default async function GetHealthprof() {
 
     if (!response) {
         return (
-            <Alert className="col-span-3">
+            <Link  className="col-span-3" href="/profile">
+                <Alert variant={"destructive"} className="bg-background">
                 <AlertCircle />
                 <AlertTitle>Haz iniciado sesión como Profesional</AlertTitle>
                 <AlertDescription>
@@ -22,6 +24,7 @@ export default async function GetHealthprof() {
                     acceder a todas las funciones que te estan esperando.
                 </AlertDescription>
             </Alert>
+            </Link>
         );
     }
 
